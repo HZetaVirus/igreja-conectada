@@ -110,10 +110,10 @@ export default function Login() {
 
         {/* Versículo */}
         <div className="mt-6 text-center">
-          <p className="text-white/90 text-sm italic drop-shadow-lg">
+          <p className="text-white/90 text-base italic drop-shadow-lg">
             "Onde dois ou três estiverem reunidos em meu nome, ali estou eu no meio deles."
           </p>
-          <p className="text-white/70 text-xs mt-1 drop-shadow-lg">Mateus 18:20</p>
+          <p className="text-white/70 text-sm mt-1 drop-shadow-lg">Mateus 18:20</p>
         </div>
       </div>
 
