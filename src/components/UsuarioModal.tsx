@@ -10,6 +10,7 @@ interface UsuarioModalProps {
 
 export default function UsuarioModal({ isOpen, onClose, onSave, usuario }: UsuarioModalProps) {
   const [formData, setFormData] = useState({
+    nome: '',
     email: '',
     senha: '',
     nivel_acesso: 'admin',
@@ -28,6 +29,7 @@ export default function UsuarioModal({ isOpen, onClose, onSave, usuario }: Usuar
   useEffect(() => {
     if (usuario) {
       setFormData({
+        nome: usuario.nome || '',
         email: usuario.email || '',
         senha: '',
         nivel_acesso: usuario.nivel_acesso || 'admin',
@@ -36,6 +38,7 @@ export default function UsuarioModal({ isOpen, onClose, onSave, usuario }: Usuar
       })
     } else {
       setFormData({
+        nome: '',
         email: '',
         senha: '',
         nivel_acesso: 'admin',
@@ -84,6 +87,20 @@ export default function UsuarioModal({ isOpen, onClose, onSave, usuario }: Usuar
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Nome Completo *
+              </label>
+              <input
+                type="text"
+                required
+                value={formData.nome}
+                onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                placeholder="Nome do pastor/administrador"
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Email *

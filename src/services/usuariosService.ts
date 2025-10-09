@@ -19,6 +19,7 @@ export async function getUsuarios() {
 }
 
 export async function createUsuario(usuario: {
+  nome: string
   email: string
   senha: string
   nivel_acesso: string
@@ -42,6 +43,7 @@ export async function createUsuario(usuario: {
     const { data, error } = await supabase
       .from('usuarios')
       .update({
+        nome: usuario.nome,
         nivel_acesso: usuario.nivel_acesso,
         congregacao_id: usuario.congregacao_id,
         ativo: usuario.ativo,
@@ -59,6 +61,7 @@ export async function createUsuario(usuario: {
 }
 
 export async function updateUsuario(id: string, usuario: {
+  nome?: string
   nivel_acesso?: string
   congregacao_id?: string
   ativo?: boolean
