@@ -1,12 +1,14 @@
+import { useState } from 'react'
 import { usePWA } from '../hooks/usePWA'
 
 export default function InstallPWA() {
   const { isInstallable, installApp } = usePWA()
+  const [dismissed, setDismissed] = useState(false)
 
-  if (!isInstallable) return null
+  if (!isInstallable || dismissed) return null
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-4 right-4 z-50 animate-slide-up">
       <div className="bg-primary-600 text-white px-6 py-4 rounded-lg shadow-xl max-w-sm">
         <div className="flex items-start gap-3">
           <span className="text-2xl">📱</span>
@@ -23,7 +25,7 @@ export default function InstallPWA() {
                 Instalar
               </button>
               <button
-                onClick={() => {}}
+                onClick={() => setDismissed(true)}
                 className="text-white px-4 py-2 rounded-lg text-sm hover:bg-primary-700 transition"
               >
                 Agora não
