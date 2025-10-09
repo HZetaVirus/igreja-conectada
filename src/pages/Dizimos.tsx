@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import DizimoModal from '../components/DizimoModal'
-import ConfirmDialog from '../components/ConfirmDialog'
 import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
 import {

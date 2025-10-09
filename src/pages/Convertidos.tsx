@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import ConvertidoModal from '../components/ConvertidoModal'
 import InformacoesFamiliaresModal from '../components/InformacoesFamiliaresModal'
-import ConfirmDialog from '../components/ConfirmDialog'
 import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
 import {
@@ -28,11 +27,6 @@ export default function Convertidos() {
   // Modal de informações familiares
   const [isInfoFamiliarModalOpen, setIsInfoFamiliarModalOpen] = useState(false)
   const [convertidoRecemCriado, setConvertidoRecemCriado] = useState<any | null>(null)
-
-  // Confirm dialog
-  const [confirmDialog, setConfirmDialog] = useState<{
-    isOpen: boolean
-    title: string
     message: string
     onConfirm: () => void
     variant?: 'danger' | 'warning' | 'info'
@@ -381,7 +375,7 @@ export default function Convertidos() {
           onClose={closeModal}
           onSave={handleSave}
           convertido={selectedConvertido}
-          congregacaoId={usuario?.congregacaoId}
+          congregacaoId={usuario?.congregacaoId || undefined}
         />
 
         {/* Modal de Informações Familiares */}
@@ -389,7 +383,7 @@ export default function Convertidos() {
           isOpen={isInfoFamiliarModalOpen}
           onClose={closeInfoFamiliarModal}
           onSave={handleSaveInfoFamiliares}
-          congregacaoId={usuario?.congregacaoId}
+          congregacaoId={usuario?.congregacaoId || undefined}
           membroNome={convertidoRecemCriado?.nome || ''}
         />
       </div>

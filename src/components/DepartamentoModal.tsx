@@ -75,7 +75,7 @@ export default function DepartamentoModal({ isOpen, onClose, onSave, departament
     setLoading(true)
     try {
       // Converter string vazia para null em campos UUID
-      const dataToSave = {
+      const dataToSave: any = {
         ...formData,
         responsavel_id: formData.responsavel_id || null,
       }

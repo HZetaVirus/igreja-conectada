@@ -59,7 +59,7 @@ export default function ConvertidoModal({ isOpen, onClose, onSave, convertido, c
         nome: '',
         data_conversao: new Date().toISOString().split('T')[0],
         discipulador_id: '',
-        congregacao_id: congregacaoId,
+        congregacao_id: congregacaoId || '',
         status_etapa: 'iniciado',
         telefone: '',
         observacoes: '',

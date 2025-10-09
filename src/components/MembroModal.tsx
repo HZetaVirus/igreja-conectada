@@ -64,7 +64,7 @@ export default function MembroModal({ isOpen, onClose, onSave, membro, congregac
         data_nascimento: '',
         cargo: '',
         status_espiritual: 'ativo',
-        congregacao_id: congregacaoId,
+        congregacao_id: congregacaoId || '',
         telefone: '',
         email: '',
         endereco: '',
@@ -231,7 +231,7 @@ export default function MembroModal({ isOpen, onClose, onSave, membro, congregac
                 </label>
                 <input
                   type="date"
-                  value={formData.data_batismo}
+                  value={formData.data_batismo || ''}
                   onChange={(e) => setFormData({ ...formData, data_batismo: e.target.value })}
                   className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                 />
@@ -242,7 +242,7 @@ export default function MembroModal({ isOpen, onClose, onSave, membro, congregac
                   Possui Carta de Benção Apostólica?
                 </label>
                 <select
-                  value={formData.carta_bencao}
+                  value={formData.carta_bencao || ''}
                   onChange={(e) => setFormData({ ...formData, carta_bencao: e.target.value })}
                   className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                 >
@@ -257,7 +257,7 @@ export default function MembroModal({ isOpen, onClose, onSave, membro, congregac
                   Origem do Membro
                 </label>
                 <select
-                  value={formData.origem_membro}
+                  value={formData.origem_membro || ''}
                   onChange={(e) => {
                     setFormData({ ...formData, origem_membro: e.target.value })
                     // Limpar congregação de origem se for evangelismo
@@ -280,7 +280,7 @@ export default function MembroModal({ isOpen, onClose, onSave, membro, congregac
                   </label>
                   <input
                     type="text"
-                    value={formData.congregacao_origem}
+                    value={formData.congregacao_origem || ''}
                     onChange={(e) => setFormData({ ...formData, congregacao_origem: e.target.value })}
                     className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                     placeholder="Nome da congregação anterior"

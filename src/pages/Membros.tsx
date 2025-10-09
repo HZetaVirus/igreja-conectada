@@ -146,7 +146,7 @@ export default function Membros() {
     })
   }
 
-  function openModal(membro?: Membro) {
+  function openModal(membro?: any) {
     setSelectedMembro(membro || null)
     setIsModalOpen(true)
   }
@@ -323,7 +323,7 @@ export default function Membros() {
           onClose={closeModal}
           onSave={handleSave}
           membro={selectedMembro}
-          congregacaoId={usuario?.congregacaoId}
+          congregacaoId={usuario?.congregacaoId || undefined}
         />
 
         {/* Modal de Informações Familiares */}
@@ -331,7 +331,7 @@ export default function Membros() {
           isOpen={isInfoFamiliarModalOpen}
           onClose={closeInfoFamiliarModal}
           onSave={handleSaveInfoFamiliares}
-          congregacaoId={usuario?.congregacaoId}
+          congregacaoId={usuario?.congregacaoId || undefined}
           membroNome={membroRecemCriado?.nome || ''}
         />
 

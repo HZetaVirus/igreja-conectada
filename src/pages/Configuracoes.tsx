@@ -28,7 +28,7 @@ import {
 type Tab = 'cargos' | 'congregacoes' | 'usuarios'
 
 export default function Configuracoes() {
-  const { usuario, isSuperAdmin } = useAuth()
+  const { isSuperAdmin } = useAuth()
   const toast = useToast()
   const [activeTab, setActiveTab] = useState<Tab>('cargos')
   const [loading, setLoading] = useState(true)
@@ -503,7 +503,7 @@ export default function Configuracoes() {
           message={confirmDialog.message}
           variant={confirmDialog.variant}
           onConfirm={confirmDialog.onConfirm}
-          onCancel={() => setConfirmDialog({ ...confirmDialog, isOpen: false })}
+          onClose={() => setConfirmDialog({ ...confirmDialog, isOpen: false })}
         />
       </div>
     </Layout>
