@@ -3,7 +3,6 @@ import Layout from '../components/Layout'
 import { useAuth } from '../contexts/AuthContext'
 import { useToast } from '../contexts/ToastContext'
 import { getJuventude, deleteJuventude, Juventude as JuventudeType } from '../services/familiasService'
-import { format } from 'date-fns'
 
 export default function Juventude() {
   const { usuario, isSuperAdmin } = useAuth()
@@ -43,12 +42,19 @@ export default function Juventude() {
     }
   }
 
+  // Função para formatar data sem problema de fuso horário
+  function formatarData(dataString: string): string {
+    const [ano, mes, dia] = dataString.split('-')
+    return `${dia}/${mes}/${ano}`
+  }
+
   function calcularIdade(dataNascimento: string): number {
     const hoje = new Date()
-    const nascimento = new Date(dataNascimento)
+    const [ano, mes, dia] = dataNascimento.split('-').map(Number)
+    const nascimento = new Date(ano, mes - 1, dia)
     let idade = hoje.getFullYear() - nascimento.getFullYear()
-    const mes = hoje.getMonth() - nascimento.getMonth()
-    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+    const mesAtual = hoje.getMonth() - nascimento.getMonth()
+    if (mesAtual < 0 || (mesAtual === 0 && hoje.getDate() < nascimento.getDate())) {
       idade--
     }
     return idade
@@ -203,7 +209,7 @@ export default function Juventude() {
                         </div>
                       </td>
                       <td className="px-4 lg:px-6 py-4 text-sm text-gray-900 hidden md:table-cell">
-                        {format(new Date(j.data_nascimento), 'dd/MM/yyyy')}
+                        {formatarData(j.data_nascimento)}
                       </td>
                       <td className="px-4 lg:px-6 py-4 text-center">
                         <span className="text-sm font-bold text-gray-900">{idade} anos</span>
