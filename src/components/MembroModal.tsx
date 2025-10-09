@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { CreateMembroData } from '../services/membrosService'
 import { getCongregacoes } from '../services/congregacoesService'
+import { getCargos } from '../services/cargosService'
 
 interface MembroModalProps {
   isOpen: boolean
@@ -27,18 +28,29 @@ export default function MembroModal({ isOpen, onClose, onSave, membro, congregac
   })
   const [loading, setLoading] = useState(false)
   const [congregacoes, setCongregacoes] = useState<any[]>([])
+  const [cargos, setCargos] = useState<any[]>([])
   const isSuperAdmin = !congregacaoId
 
   useEffect(() => {
-    if (isSuperAdmin) {
-      loadCongregacoes()
+    if (isOpen) {
+      loadCargos()
+      if (isSuperAdmin) {
+        loadCongregacoes()
+      }
     }
-  }, [isSuperAdmin])
+  }, [isOpen, isSuperAdmin, congregacaoId])
 
   async function loadCongregacoes() {
     const result = await getCongregacoes()
     if (result.success && result.data) {
       setCongregacoes(result.data)
+    }
+  }
+
+  async function loadCargos() {
+    const result = await getCargos(congregacaoId)
+    if (result.success && result.data) {
+      setCargos(result.data)
     }
   }
 
@@ -160,13 +172,18 @@ export default function MembroModal({ isOpen, onClose, onSave, membro, congregac
                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                   Cargo
                 </label>
-                <input
-                  type="text"
+                <select
                   value={formData.cargo}
                   onChange={(e) => setFormData({ ...formData, cargo: e.target.value })}
                   className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
-                  placeholder="Ex: Diácono, Pastor, Membro"
-                />
+                >
+                  <option value="">Membro</option>
+                  {cargos.map((cargo) => (
+                    <option key={cargo.id} value={cargo.nome}>
+                      {cargo.nome}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>

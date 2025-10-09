@@ -1,64 +1,50 @@
 import { supabase } from './supabaseClient'
 
-export async function getCargos() {
+export interface Cargo {
+  id: string
+  nome: string
+  descricao: string
+  congregacao_id: string | null
+  created_at: string
+  updated_at: string
+}
+
+export async function getCargos(congregacaoId?: string) {
   try {
-    const { data, error } = await supabase
+    let query = supabase
       .from('cargos')
       .select('*')
       .order('nome', { ascending: true })
 
+    // Buscar cargos globais (congregacao_id null) ou da congregação específica
+    if (congregacaoId) {
+      query = query.or(`congregacao_id.is.null,congregacao_id.eq.${congregacaoId}`)
+    } else {
+      query = query.is('congregacao_id', null)
+    }
+
+    const { data, error } = await query
+
     if (error) throw error
     return { success: true, data }
   } catch (error: any) {
-    // Error logged
+    console.error('Erro ao buscar cargos:', error)
     return { success: false, error: error.message }
   }
 }
 
-export async function createCargo(cargo: { nome: string; descricao?: string }) {
+export async function getCargoById(id: string) {
   try {
     const { data, error } = await supabase
       .from('cargos')
-      .insert([cargo])
-      .select()
+      .select('*')
+      .eq('id', id)
       .single()
 
     if (error) throw error
     return { success: true, data }
   } catch (error: any) {
-    // Error logged
-    return { success: false, error: error.message }
-  }
-}
-
-export async function updateCargo(id: string, cargo: { nome: string; descricao?: string }) {
-  try {
-    const { data, error } = await supabase
-      .from('cargos')
-      .update(cargo)
-      .eq('id', id)
-      .select()
-      .single()
-
-    if (error) throw error
-    return { success: true, data }
-  } catch (error: any) {
-    // Error logged
-    return { success: false, error: error.message }
-  }
-}
-
-export async function deleteCargo(id: string) {
-  try {
-    const { error } = await supabase
-      .from('cargos')
-      .delete()
-      .eq('id', id)
-
-    if (error) throw error
-    return { success: true }
-  } catch (error: any) {
-    // Error logged
+    console.error('Erro ao buscar cargo:', error)
     return { success: false, error: error.message }
   }
 }
