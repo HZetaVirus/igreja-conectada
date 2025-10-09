@@ -120,9 +120,18 @@ export default function Sidebar() {
         <div className="border-t border-gray-700 pt-4">
           <div className="mb-4">
             <p className="text-sm text-gray-400">Logado como:</p>
-            <Tooltip text={usuario?.email || ''} position="top">
-              <p className="text-sm font-medium truncate">{usuario?.email}</p>
-            </Tooltip>
+            <p className="text-sm font-bold truncate">{usuario?.nome || 'Usuário'}</p>
+            <p className="text-xs text-gray-400 mt-1">
+              {usuario?.nivelAcesso === 'super_admin' && '👑 Super Admin'}
+              {usuario?.nivelAcesso === 'admin' && '⚡ Administrador'}
+              {usuario?.nivelAcesso === 'pastor' && '✝️ Pastor'}
+              {usuario?.nivelAcesso === 'secretario' && '📝 Secretário'}
+            </p>
+            {usuario?.congregacao && (
+              <p className="text-xs text-gray-400 mt-1 truncate">
+                ⛪ {usuario.congregacao.nome}
+              </p>
+            )}
           </div>
           <Tooltip text="Sair do sistema" position="top">
             <button

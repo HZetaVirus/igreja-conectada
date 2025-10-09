@@ -5,6 +5,7 @@ import { login as loginService, verifyToken, getCurrentUser } from '../services/
 interface Usuario {
   id: string
   email: string
+  nome?: string
   nivelAcesso: string
   congregacaoId?: string | null
   congregacao?: {

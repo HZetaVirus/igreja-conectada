@@ -5,6 +5,7 @@ export interface LoginResponse {
   usuario?: {
     id: string
     email: string
+    nome?: string
     nivelAcesso: string
     congregacaoId?: string | null
     congregacao?: any
@@ -54,6 +55,7 @@ export async function login(email: string, password: string): Promise<LoginRespo
       usuario: {
         id: usuarios.id,
         email: usuarios.email,
+        nome: usuarios.nome,
         nivelAcesso: usuarios.nivel_acesso,
         congregacaoId: usuarios.congregacao_id,
         congregacao: usuarios.congregacao,
@@ -102,6 +104,7 @@ export async function getCurrentUser(userId: string) {
     return {
       id: data.id,
       email: data.email,
+      nome: data.nome,
       nivelAcesso: data.nivel_acesso,
       congregacaoId: data.congregacao_id,
       congregacao: data.congregacao,
