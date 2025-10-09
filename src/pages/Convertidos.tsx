@@ -27,16 +27,6 @@ export default function Convertidos() {
   // Modal de informações familiares
   const [isInfoFamiliarModalOpen, setIsInfoFamiliarModalOpen] = useState(false)
   const [convertidoRecemCriado, setConvertidoRecemCriado] = useState<any | null>(null)
-    message: string
-    onConfirm: () => void
-    variant?: 'danger' | 'warning' | 'info'
-  }>({
-    isOpen: false,
-    title: '',
-    message: '',
-    onConfirm: () => {},
-    variant: 'danger'
-  })
 
   useEffect(() => {
     loadConvertidos()

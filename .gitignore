@@ -33,6 +33,7 @@ yarn-error.log*
 .vscode/
 .idea/
 .kiro/.claude/
+.kiro/
 
 # Pastas removidas
 /prisma
