@@ -1,167 +1,283 @@
-# Igniter.js Starter: Next.js Full-Stack App
+# ⛪ Igreja Conectada
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-blue.svg)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue.svg)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> Sistema completo de gestão eclesiástica com controle de membros, dízimos, departamentos e muito mais.
 
-Welcome to the Igniter.js starter for building full-stack, type-safe applications with **Next.js**. This template provides a solid foundation for creating modern, high-performance web applications featuring server components, client components, and an end-to-end type-safe API layer.
+![React](https://img.shields.io/badge/React-18.3-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue)
+![Supabase](https://img.shields.io/badge/Supabase-Latest-green)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-3.4-cyan)
 
-## Features
+---
 
--   **Next.js App Router**: A full-featured application built using the latest Next.js conventions.
--   **End-to-End Type Safety**: Powered by Igniter.js, ensuring type safety between your React components and your back-end API.
--   **Feature-Based Architecture**: A scalable project structure that organizes code by business domain.
--   **Ready-to-Use Services**: Pre-configured examples for:
-    -   **Caching**: Integrated with Redis via `@igniter-js/adapter-redis`.
-    -   **Background Jobs**: Asynchronous task processing with BullMQ via `@igniter-js/adapter-bullmq`.
-    -   **Structured Logging**: Production-ready logging.
--   **Database Ready**: Comes with Prisma set up for seamless database integration.
--   **Seamless Integration**: Uses the `nextRouteHandlerAdapter` to cleanly connect the Igniter.js router to the Next.js App Router.
--   **UI Components**: Includes a set of UI components from `shadcn/ui` to get you started quickly.
+## 🚀 Funcionalidades
 
-## Prerequisites
+### 👥 Gestão de Membros
 
-Before you begin, ensure you have the following installed:
+- Cadastro completo com foto
+- Informações familiares (cônjuge, filhos)
+- Histórico de batismo e conversão
+- Filtros avançados e busca
 
--   [Node.js](https://nodejs.org/en) (v18 or higher)
--   [npm](https://www.npmjs.com/) or a compatible package manager
--   A running [Redis](https://redis.io/docs/getting-started/) instance (for caching and background jobs).
--   A PostgreSQL database (or you can configure Prisma for a different one).
+### 💰 Controle Financeiro
 
-## Getting Started
+- Registro de dízimos e ofertas
+- Relatórios por período
+- Totalizadores automáticos
+- Exportação CSV/PDF
 
-Follow these steps to get your project up and running:
+### ✨ Novos Convertidos
 
-1.  **Clone the Repository**
-    ```bash
-    git clone https://github.com/felipebarcelospro/igniter-js.git
-    cd igniter-js/apps/starter-next-app
-    ```
+- Acompanhamento de discipulado
 
-2.  **Install Dependencies**
-    ```bash
-    npm install
-    ```
+### 💾 Backup Automático
 
-3.  **Configure Environment Variables**
-    Create a `.env` file in the root of this starter (`igniter-js/apps/starter-next-app/.env`) and add your database and Redis connection URLs:
+- Backup diário automático de todas as tabelas
+- Envio por email com arquivo JSON
+- Execução manual via painel administrativo
+- Estatísticas detalhadas do backup
+- Documentação completa em `BACKUP.md`
 
-    ```env
-    # .env
-    DATABASE_URL="postgresql://user:password@localhost:5432/mydatabase?schema=public"
-    REDIS_URL="redis://127.0.0.1:6379"
-    ```
+### ⚙️ Configurações
 
-4.  **Run Database Migrations**
-    ```bash
-    npx prisma db push
-    ```
+- Painel administrativo completo
+- Informações do sistema
+- Status de segurança
+- Ferramentas de manutenção
+- Status de etapas
+- Vinculação com discipulador
+- Histórico completo
 
-5.  **Run the Development Server**
-    ```bash
-    npm run dev
-    ```
-    This command starts the Next.js development server with Turbopack. Your application will be available at `http://localhost:3000`.
+### 📁 Departamentos
 
-## How It Works
+- Organização por ministérios
+- Gestão de integrantes
+- Responsáveis e cargos
+- Departamentos infantis (juventude)
 
-This starter deeply integrates Igniter.js with the Next.js App Router.
+### 👶 Juventude
 
-### 1. The Next.js API Route Handler
+- Cadastro de crianças/adolescentes
+- Vínculo com responsáveis (pai/mãe)
+- Filtros por faixa etária
+- Integração com departamentos
 
-The entry point for all API requests is the catch-all route handler located at `src/app/api/[[...all]]/route.ts`. This file uses the `nextRouteHandlerAdapter` from Igniter.js to expose the entire API.
+### 📊 Relatórios
 
-```typescript
-// src/app/api/[[...all]]/route.ts
-import { AppRouter } from '@/igniter.router'
-import { nextRouteHandlerAdapter } from '@igniter-js/core/adapters'
+- Membros, dízimos, convertidos
+- Filtros personalizados
+- Exportação PDF e CSV
+- Gráficos e estatísticas
 
-// The adapter creates GET, POST, etc. handlers from your Igniter.js router.
-export const { GET, POST, PUT, DELETE } = nextRouteHandlerAdapter(AppRouter)
+---
+
+## 🛠️ Tecnologias
+
+- **Frontend:** React 18 + TypeScript + Vite
+- **Estilização:** TailwindCSS
+- **Backend:** Supabase (PostgreSQL)
+- **Autenticação:** Supabase Auth
+- **Roteamento:** React Router v6
+- **Formulários:** React Hook Form
+- **Datas:** date-fns
+- **PDF:** jsPDF + autoTable
+
+---
+
+## 📦 Instalação
+
+### Pré-requisitos
+
+- Node.js 18+
+- npm ou yarn
+- Conta no Supabase
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/igreja-conectada.git
+cd igreja-conectada/igreja
 ```
 
-### 2. The Igniter.js API Layer
+### 2. Instale as dependências
 
-The back-end API logic is defined using Igniter.js.
+```bash
+npm install
+```
 
--   **Initialization (`src/igniter.ts`)**: This is where the core Igniter instance is created and configured with adapters for the store (Redis), jobs (BullMQ), logging, and telemetry.
--   **Router (`src/igniter.router.ts`)**: This file defines all API controllers.
--   **Controllers (`src/features/[feature]/controllers/`)**: Controllers group related API actions (`query` and `mutation`). This is where your business logic lives.
+### 3. Configure as variáveis de ambiente
 
-### 3. Type-Safe Client & React Hooks
+Crie um arquivo `.env` na raiz do projeto:
 
-Igniter.js automatically generates a type-safe client based on your API router.
+```env
+VITE_SUPABASE_URL=sua_url_do_supabase
+VITE_SUPABASE_ANON_KEY=sua_chave_anonima
+```
 
--   The `api` object in `src/igniter.client.ts` is your gateway to the back-end.
--   You can call your API endpoints from both Server Components and Client Components with full type safety.
+### 4. Execute o projeto
 
-**Server Component Usage:**
+```bash
+npm run dev
+```
 
-```tsx
-// app/some-server-page/page.tsx
-import { api } from '@/igniter.client';
+Acesse: `http://localhost:3000`
 
-export default async function SomePage() {
-  // Direct, type-safe API call
-  const data = await api.example.health.query();
-  return <div>Status: {data.status}</div>;
+---
+
+## 🗄️ Configuração do Banco de Dados
+
+### 1. Crie um projeto no Supabase
+
+Acesse [supabase.com](https://supabase.com) e crie um novo projeto.
+
+### 2. Execute as migrations
+
+As migrations estão em `igreja/supabase/migrations/`. Execute-as na ordem:
+
+1. `20240101000000_initial_schema.sql` - Estrutura inicial
+2. `20240102000000_add_familias.sql` - Tabelas de família
+3. `20240103000000_add_departamentos.sql` - Departamentos
+
+Ou use o Supabase CLI:
+
+```bash
+supabase db push
+```
+
+### 3. Crie o primeiro usuário
+
+Execute no SQL Editor do Supabase:
+
+```sql
+-- Criar congregação
+INSERT INTO congregacoes (nome, endereco, telefone, email)
+VALUES ('Minha Igreja', 'Rua Exemplo, 123', '(11) 99999-9999', 'contato@igreja.com');
+
+-- Criar usuário admin
+INSERT INTO usuarios (email, nome, role, congregacao_id)
+VALUES (
+  'admin@igreja.com',
+  'Administrador',
+  'super_admin',
+  (SELECT id FROM congregacoes LIMIT 1)
+);
+```
+
+---
+
+## 🔐 Autenticação
+
+### Usuários e Permissões
+
+| Papel           | Permissões                |
+| --------------- | ------------------------- |
+| **super_admin** | Acesso total ao sistema   |
+| **admin**       | Gestão da congregação     |
+| **pastor**      | Visualização e relatórios |
+| **secretario**  | Cadastros básicos         |
+| **tesoureiro**  | Gestão financeira         |
+
+### Login
+
+Use o email cadastrado no Supabase Auth. A senha é definida no primeiro acesso.
+
+---
+
+## 📱 Deploy
+
+### Vercel (Recomendado)
+
+**📖 [Guia Completo de Deploy na Vercel](VERCEL.md)**
+
+Passos rápidos:
+
+1. Conecte seu repositório no Vercel
+2. Configure as variáveis de ambiente
+3. Deploy automático!
+
+```bash
+# Ou via CLI
+npm install -g vercel
+vercel --prod
+```
+
+### Netlify
+
+```bash
+npm run build
+netlify deploy --prod --dir=dist
+```
+
+---
+
+## 🎨 Personalização
+
+### Cores
+
+Edite `tailwind.config.js`:
+
+```js
+theme: {
+  extend: {
+    colors: {
+      primary: {
+        50: '#eff6ff',
+        // ... suas cores
+      }
+    }
+  }
 }
 ```
 
-**Client Component Usage:**
+### Logo
 
-```tsx
-// components/SomeClientComponent.tsx
-'use client';
-import { api } from '@/igniter.client';
+Substitua o ícone em `Login.tsx` e adicione seu logo em `public/`.
 
-export function SomeClientComponent() {
-  // Type-safe hook for data fetching, caching, and revalidation
-  const { data, isLoading } = api.example.health.useQuery();
+---
 
-  if (isLoading) return <div>Loading...</div>;
-  return <div>Status: {data?.status}</div>;
-}
-```
-
-## Project Structure
-
-The project follows a feature-based architecture combined with Next.js conventions.
+## 📚 Estrutura do Projeto
 
 ```
-src/
-├── app/                  # Next.js App Router pages and layouts
-│   └── api/              # API route handlers
-│       └── [[...all]]/
-│           └── route.ts  # Igniter.js API entry point
-├── components/           # Shared, reusable UI components
-├── features/             # Business logic, grouped by feature
-│   └── example/
-│       └── controllers/  # API endpoint definitions
-├── services/             # Service initializations (Redis, Prisma, etc.)
-├── igniter.ts            # Igniter.js core instance
-├── igniter.client.ts     # Auto-generated type-safe API client
-├── igniter.router.ts     # Main API router
-└── layout.tsx            # Root layout, includes providers
+igreja/
+├── src/
+│   ├── components/     # Componentes reutilizáveis
+│   ├── contexts/       # Context API (Auth, Toast)
+│   ├── pages/          # Páginas da aplicação
+│   ├── services/       # Serviços e API
+│   └── App.tsx         # Componente principal
+├── public/             # Arquivos estáticos
+└── supabase/           # Migrations e configurações
 ```
 
-## Available Scripts
+---
 
--   `npm run dev`: Starts the development server.
--   `npm run build`: Builds the application for production.
--   `npm run start`: Starts the production server.
--   `npm run lint`: Runs the linter.
+## 🤝 Contribuindo
 
-## Further Learning
+Contribuições são bem-vindas!
 
-To learn more about Igniter.js and its powerful features, check out the official documentation:
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
 
--   **[Igniter.js GitHub Repository](https://github.com/felipebarcelospro/igniter-js)**
--   **[Official Documentation](https://igniterjs.com/docs)**
--   **[Core Concepts](https://igniterjs.com/docs/core-concepts)**
--   **[Client-Side Integration](https://igniterjs.com/docs/client-side)**
+---
 
-## License
+## 📄 Licença
 
-This starter is licensed under the [MIT License](LICENSE).
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 💬 Suporte
+
+- 📧 Email: suporte@igrejaconectada.com
+- 💬 Discord: [Entre no servidor](https://discord.gg/exemplo)
+- 📖 Documentação: [docs.igrejaconectada.com](https://docs.igrejaconectada.com)
+
+---
+
+## ⭐ Agradecimentos
+
+Desenvolvido com ❤️ para igrejas que desejam modernizar sua gestão.
+
+**Que Deus abençoe seu ministério!** 🙏
