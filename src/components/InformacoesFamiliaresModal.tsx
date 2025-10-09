@@ -58,15 +58,18 @@ export default function InformacoesFamiliaresModal({
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    setLoading(true)
 
     // Validações
     if (estadoCivil === 'casado' && !conjugeId) {
       alert('Por favor, selecione o cônjuge')
+      setLoading(false)
       return
     }
 
     if (temFilhos && quantidadeFilhos === 0) {
       alert('Por favor, informe a quantidade de filhos')
+      setLoading(false)
       return
     }
 
@@ -74,6 +77,7 @@ export default function InformacoesFamiliaresModal({
       const filhosValidos = filhos.filter(f => f.nome && f.dataNascimento)
       if (filhosValidos.length !== quantidadeFilhos) {
         alert('Por favor, preencha todos os dados dos filhos')
+        setLoading(false)
         return
       }
     }
@@ -87,6 +91,7 @@ export default function InformacoesFamiliaresModal({
     }
 
     onSave(dados)
+    setLoading(false)
   }
 
   function handlePular() {
