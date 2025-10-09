@@ -11,11 +11,18 @@ import Juventude from './pages/Juventude'
 import Configuracoes from './pages/Configuracoes'
 import PerfilCongregacao from './pages/PerfilCongregacao'
 import ProtectedRoute from './components/ProtectedRoute'
+import OnlineStatus from './components/OnlineStatus'
+import InstallPWA from './components/InstallPWA'
+import { usePWA } from './hooks/usePWA'
 
 function App() {
+  usePWA()
+
   return (
     <AuthProvider>
       <ToastProvider>
+        <OnlineStatus />
+        <InstallPWA />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route
