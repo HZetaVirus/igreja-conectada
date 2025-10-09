@@ -6,7 +6,7 @@ interface Props {
   isOpen: boolean
   onClose: () => void
   onSave: (dados: DadosFamiliares) => void
-  congregacaoId: string
+  congregacaoId?: string
   membroNome: string
 }
 
@@ -23,6 +23,7 @@ export default function InformacoesFamiliaresModal({
   const [quantidadeFilhos, setQuantidadeFilhos] = useState(0)
   const [filhos, setFilhos] = useState<DadosFilho[]>([])
   const [membrosDisponiveis, setMembrosDisponiveis] = useState<any[]>([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
