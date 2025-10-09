@@ -3,8 +3,8 @@ import autoTable from 'jspdf-autotable'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
-// Tipos
-interface RelatorioMembro {
+// Tipos (exportados para uso futuro)
+export interface RelatorioMembro {
   nome: string
   data_nascimento: string
   cargo: string
@@ -13,7 +13,7 @@ interface RelatorioMembro {
   email: string
 }
 
-interface RelatorioDizimo {
+export interface RelatorioDizimo {
   data: string
   tipo: string
   membro: string
@@ -21,7 +21,7 @@ interface RelatorioDizimo {
   observacao: string
 }
 
-interface RelatorioConvertido {
+export interface RelatorioConvertido {
   nome: string
   data_conversao: string
   discipulador: string

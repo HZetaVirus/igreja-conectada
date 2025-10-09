@@ -1,5 +1,4 @@
-import { supabase, Usuario } from './supabaseClient'
-import bcrypt from 'bcryptjs'
+import { supabase } from './supabaseClient'
 
 export interface LoginResponse {
   success: boolean

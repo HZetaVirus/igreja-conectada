@@ -1,4 +1,4 @@
-import { supabase, Convertido } from './supabaseClient'
+import { supabase } from './supabaseClient'
 
 export interface CreateConvertidoData {
   nome: string

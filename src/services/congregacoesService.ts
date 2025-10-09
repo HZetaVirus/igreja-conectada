@@ -1,4 +1,4 @@
-import { supabase, Congregacao } from './supabaseClient'
+import { supabase } from './supabaseClient'
 
 export interface CreateCongregacaoData {
   nome: string

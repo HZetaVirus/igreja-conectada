@@ -382,8 +382,8 @@ export async function getMembrosEJuventudeDepartamento(departamentoId: string) {
                 cargo: null,
                 tipo: 'juventude',
                 responsaveis: {
-                  pai: juventude.pai?.nome,
-                  mae: juventude.mae?.nome
+                  pai: Array.isArray(juventude.pai) ? juventude.pai[0]?.nome : juventude.pai?.nome,
+                  mae: Array.isArray(juventude.mae) ? juventude.mae[0]?.nome : juventude.mae?.nome
                 }
               }
             }

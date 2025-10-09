@@ -1,4 +1,4 @@
-import { supabase, Dizimo } from './supabaseClient'
+import { supabase } from './supabaseClient'
 
 export interface CreateDizimoData {
   membro_id: string
