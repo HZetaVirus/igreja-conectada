@@ -113,7 +113,7 @@ export default function Configuracoes() {
 
   async function handleSaveCargo(data: any) {
     const result = selectedCargo
-      ? await updateCargo(selectedCargo.id, data)
+      ? await updateCargo({ id: selectedCargo.id, ...data })
       : await createCargo(data)
 
     if (result.success) {
