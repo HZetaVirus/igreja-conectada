@@ -146,7 +146,7 @@ export default function DepartamentoModal({ isOpen, onClose, onSave, departament
                 <option value="">Selecione um responsável</option>
                 {membros.map((membro) => (
                   <option key={membro.id} value={membro.id}>
-                    {membro.nome} {membro.cargo ? `(${membro.cargo})` : ''}
+                    {membro.nome}{membro.cargo ? ` - ${membro.cargo}` : ' - Membro'}
                   </option>
                 ))}
               </select>
