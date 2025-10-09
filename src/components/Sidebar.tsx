@@ -11,7 +11,7 @@ const menuItems = [
   { href: '/departamentos', label: 'Departamentos', icon: '📁' },
   { href: '/juventude', label: 'Juventude', icon: '👶' },
   { href: '/perfil-congregacao', label: 'Perfil da Congregação', icon: '⛪', adminOnly: true },
-  { href: '/configuracoes', label: 'Configurações', icon: '⚙️' },
+  { href: '/configuracoes', label: 'Configurações', icon: '⚙️', superAdminOnly: true },
 ]
 
 export default function Sidebar() {
@@ -56,7 +56,7 @@ export default function Sidebar() {
       <aside
         className={`
           fixed lg:static inset-y-0 left-0 z-40
-          bg-gray-900 text-white w-64 min-h-screen p-4 flex flex-col
+          bg-gray-900 text-white w-64 h-screen p-4 flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
@@ -90,11 +90,14 @@ export default function Sidebar() {
           </button>
         </div>
 
-        <nav className="flex-1">
+        <nav className="flex-1 overflow-y-auto">
           <ul className="space-y-2">
             {menuItems.map((item) => {
               // Ocultar "Perfil da Congregação" para super_admin
               if (item.adminOnly && isSuperAdmin) return null
+              
+              // Ocultar "Configurações" para não super_admin
+              if (item.superAdminOnly && !isSuperAdmin) return null
               
               const isActive = location.pathname === item.href
               return (
